@@ -1,25 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SprinklerService
+﻿namespace SprinklerService
 {
-    static class Program
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Hosting.WindowsServices;
+    using Microsoft.Net.Http.Server;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Linq;
+
+    class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        static void Main()
+        static void Main(string[] args)
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
+            bool isService = true;
+            if(Debugger.IsAttached || args.Contains("--console"))
             {
-                new SprinklerService()
-            };
-            ServiceBase.Run(ServicesToRun);
+                isService = false;
+            }
+            var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
+            var pathToContentRoot = Path.GetDirectoryName(pathToExe);
+            if(isService)
+            {
+                pathToExe = Process.GetCurrentProcess().MainModule.FileName;
+                pathToContentRoot = Path.GetDirectoryName(pathToExe);
+            }
+
+            var host = new WebHostBuilder()
+                .UseWebListener(options =>
+                {
+                    options.ListenerSettings.Authentication.Schemes = AuthenticationSchemes.None;
+                    options.ListenerSettings.Authentication.AllowAnonymous = true;
+                })
+                .UseContentRoot(pathToContentRoot)
+                //.UseIISIntrgration()
+                .UseStartup<Startup>()
+                .UseApplicationInsights()
+                .Build();
+            if(isService)
+            {
+                host.RunAsCustomService();
+            }
+            else
+            {
+                host.Run();
+            }
         }
     }
 }

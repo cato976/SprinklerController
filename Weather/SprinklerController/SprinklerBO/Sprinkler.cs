@@ -69,6 +69,7 @@
             {
                 Debug.WriteLine(string.Format("Watering Zone:{0} for {1} minutes", zone.Name, zone.WateringTime));
                 Debug.WriteLine(string.Format("Energizing solenoid {0}", zone.Number));
+                zone.Status = StatusType.On;
 
                 DateTime Now = DateTime.Now;
                 DateTime TargetTime = Now.AddSeconds(zone.WateringTime);
@@ -82,9 +83,14 @@
 
                 Debug.WriteLine(string.Format("Done watering Zone:{0}", zone.Name));
                 Debug.WriteLine(string.Format("De-Energizing solenoid {0}", zone.Number));
+                zone.Status = StatusType.Off;
             });
 
             Debug.WriteLine("Done Watering Zones");
+        }
+        public static Schedule GetSchedule()
+        {
+            return sprinklerSchedule;
         }
     }
 }
