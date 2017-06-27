@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <OutputType>exe</OutputType>
-    <TargetFramework>net452</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
 	<RuntimeIdentifier>win7-x86</RuntimeIdentifier>
     <ApplicationIcon />
     <OutputTypeEx>exe</OutputTypeEx>
     <StartupObject />
     <RootNamespace>SprinklerService</RootNamespace>
-    <AssemblyName>SprinklerService2</AssemblyName>
+    <AssemblyName>SprinklerService</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +20,12 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
+    <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+    <PackageReference Include="System.Web.Http.Common" Version="4.0.20126.16343" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SprinklerBO\SprinklerBO.csproj" />
   </ItemGroup>
 
   <ItemGroup>

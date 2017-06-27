@@ -15,6 +15,11 @@
 
         public Sprinkler()
         {
+            //SetupSchedule();
+        }
+
+        private static void SetupSchedule()
+        {
             sprinklerSchedule.StartDateTime = DateTime.Now.AddSeconds(10);
 
             sprinklerSchedule.City = "Sunrise";
@@ -44,9 +49,15 @@
                 WateringTime = 30
             });
 
+            //StartSchedule();
+        }
+
+        private static void StartSchedule()
+        {
             SleepToTarget Temp = new SleepToTarget(sprinklerSchedule.StartDateTime, StartZones);
             Temp.Start();
         }
+
         static void StartZones()
         {
             Debug.WriteLine("Check weather conditions");
@@ -90,6 +101,7 @@
         }
         public static Schedule GetSchedule()
         {
+            SetupSchedule();
             return sprinklerSchedule;
         }
     }
