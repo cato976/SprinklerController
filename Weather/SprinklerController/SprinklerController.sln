@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SprinklerTest", "SprinklerT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAPITest", "WeatherAPITest\WeatherAPITest.csproj", "{476DDC6F-60ED-4DCD-9A7A-2CF628C78BC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarAPI", "CalendarAPI\CalendarAPI.csproj", "{AE49F367-D3A1-4597-826E-B4E2DEEF48B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarAPITest", "CalendarAPITest\CalendarAPITest.csproj", "{BC8DA693-B109-4830-8E48-99A1AFFD9342}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{476DDC6F-60ED-4DCD-9A7A-2CF628C78BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{476DDC6F-60ED-4DCD-9A7A-2CF628C78BC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{476DDC6F-60ED-4DCD-9A7A-2CF628C78BC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE49F367-D3A1-4597-826E-B4E2DEEF48B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE49F367-D3A1-4597-826E-B4E2DEEF48B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE49F367-D3A1-4597-826E-B4E2DEEF48B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE49F367-D3A1-4597-826E-B4E2DEEF48B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC8DA693-B109-4830-8E48-99A1AFFD9342}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC8DA693-B109-4830-8E48-99A1AFFD9342}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC8DA693-B109-4830-8E48-99A1AFFD9342}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC8DA693-B109-4830-8E48-99A1AFFD9342}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

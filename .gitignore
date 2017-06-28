@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Weather/SprinklerController/SprinklerBO/bin/Debug
+/Weather/SprinklerController/CalendarAPITest/bin/Debug
+/Weather/SprinklerController/CalendarAPITest/obj/Debug
+/Weather/SprinklerController/packages
+/Weather/SprinklerController/CalendarAPI/bin/Debug
+/Weather/SprinklerController/CalendarAPI/client_secret.json
+/Weather/SprinklerController/.vs
+/Weather/SprinklerController/CalendarAPI/obj
