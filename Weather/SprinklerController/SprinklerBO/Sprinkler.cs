@@ -2,7 +2,9 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Linq;
     using System.Threading;
+    using CalendarAPI;
     using WeatherAPI;
 
     /*
@@ -20,7 +22,7 @@
 
         private static void SetupSchedule()
         {
-            sprinklerSchedule.StartDateTime = DateTime.Now.AddSeconds(10);
+            //sprinklerSchedule.StartDateTime = DateTime.Now.AddSeconds(10);
 
             sprinklerSchedule.City = "Sunrise";
             sprinklerSchedule.State = "Florida";
@@ -101,6 +103,11 @@
         }
         public static Schedule GetSchedule()
         {
+            GoogleAPI google = new GoogleAPI();
+            var events = google.FindIrrigationEvents();
+            var evnt = events.Items.FirstOrDefault();
+            sprinklerSchedule.StartDateTime = (DateTime)evnt.Start.DateTime;
+
             SetupSchedule();
             return sprinklerSchedule;
         }

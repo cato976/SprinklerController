@@ -55,7 +55,7 @@
 
             // List events.
             Events events = request.Execute();
-            Console.WriteLine("Upcoming events:");
+            //Console.WriteLine("Upcoming events:");
             if (events.Items != null && events.Items.Count > 0)
             {
                 foreach (var eventItem in events.Items)
@@ -70,14 +70,14 @@
                         }
                         irrigationEvents.Items.Add(eventItem);
                     }
-                    Console.WriteLine("{0} ({1})", eventItem.Summary, when);
+                    //Console.WriteLine("{0} ({1})", eventItem.Summary, when);
                 }
 
                 return irrigationEvents;
             }
             else
             {
-                Console.WriteLine("No upcoming events found.");
+                //Console.WriteLine("No upcoming events found.");
                 return irrigationEvents;
             }
         }
@@ -89,8 +89,9 @@
             using (var stream =
                 new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
             {
-                string credPath = Environment.GetFolderPath(
-                    Environment.SpecialFolder.Personal);
+                string credPath = Environment.GetEnvironmentVariable("HOMEPATH");
+                //string credPath = Environment.GetFolderPath(
+                //    Environment.SpecialFolder.Personal);
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     Scopes,
@@ -107,6 +108,5 @@
             });
             return service;
         }
-
     }
 }
