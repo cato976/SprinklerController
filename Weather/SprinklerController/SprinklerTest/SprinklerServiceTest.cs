@@ -32,12 +32,13 @@
                 {
                     zoneMinutes += zone.WateringTime;
                 });
-                zoneMinutes += 60; //Padding
+                zoneMinutes += 10; //Padding
 
                 DateTime sleepTill = status.StartDateTime;
                 if (sleepTill > DateTime.Now)
                 {
-                    Thread.Sleep(new TimeSpan(sleepTill.AddSeconds(zoneMinutes).Ticks - sleepTill.Ticks));
+                    Thread.Sleep(new TimeSpan(sleepTill.Ticks - DateTime.Now.Ticks));  // Sleep till it time to start
+                    Thread.Sleep(new TimeSpan((sleepTill.AddSeconds(zoneMinutes).Ticks) - (sleepTill.Ticks ))); // Sleep for the watering time
                 }
             },
             CancellationToken.None,
