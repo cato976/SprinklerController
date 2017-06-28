@@ -15,5 +15,12 @@
             var evnt = google.InsertEvent(startDateTime);
             Assert.AreEqual(evnt, true);
         }
+
+        [TestMethod]
+        public void TestGet()
+        {
+            var google = new GoogleAPI();
+            var events = google.FindIrrigationEvents();
+        }
     }
 }
