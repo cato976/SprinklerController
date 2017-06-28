@@ -11,5 +11,10 @@
             var schedule = Sprinkler.GetSchedule();
             return schedule;
         }
+
+        public void StartIrrigationSystem()
+        {
+            Sprinkler.StartIrrigationSystem();
+        }
     }
 }

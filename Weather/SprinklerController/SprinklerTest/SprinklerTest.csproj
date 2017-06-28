@@ -69,6 +69,10 @@
       <Project>{ea422cb7-4eac-43f3-9ddd-d6d21f419832}</Project>
       <Name>SprinklerService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TestHelper\TestHelper.csproj">
+      <Project>{1d82ba74-f04c-4b11-b50c-4114afae8575}</Project>
+      <Name>TestHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

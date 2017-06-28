@@ -3,12 +3,15 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Hosting.WindowsServices;
     using Microsoft.Net.Http.Server;
+    using SprinklerBO;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
 
     class Program
     {
+        static Schedule sprinklerSchedule = new Schedule();
+
         static void Main(string[] args)
         {
             bool isService = true;
@@ -35,6 +38,7 @@
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();
+
             if(isService)
             {
                 host.RunAsCustomService();

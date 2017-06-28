@@ -1,10 +1,10 @@
-﻿namespace WeatherAPITest
+﻿namespace TestHelper
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class SynchronousTaslScheduler : TaskScheduler
+    public class SynchronousTaskScheduler : TaskScheduler
     {
         protected override IEnumerable<Task> GetScheduledTasks()
         {

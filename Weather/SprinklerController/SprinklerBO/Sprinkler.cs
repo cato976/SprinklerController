@@ -111,5 +111,11 @@
             SetupSchedule();
             return sprinklerSchedule;
         }
+
+        public static void StartIrrigationSystem()
+        {
+            GetSchedule();
+            StartSchedule();
+        }
     }
 }
