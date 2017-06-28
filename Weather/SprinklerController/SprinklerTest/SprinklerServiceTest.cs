@@ -32,7 +32,7 @@
                 {
                     zoneMinutes += zone.WateringTime;
                 });
-                zoneMinutes += 30; //Padding
+                zoneMinutes += 60; //Padding
 
                 DateTime sleepTill = status.StartDateTime;
                 if (sleepTill > DateTime.Now)

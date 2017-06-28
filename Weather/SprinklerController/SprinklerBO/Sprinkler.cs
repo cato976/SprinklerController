@@ -26,30 +26,42 @@
 
             sprinklerSchedule.City = "Sunrise";
             sprinklerSchedule.State = "Florida";
-            sprinklerSchedule.Zones.Add(new Zone
-            {
+            var zone = new Zone{
                 Name = "Front Lawn",
                 Number = 3,
                 WateringTime = 15
-            });
-            sprinklerSchedule.Zones.Add(new Zone
+            };
+            if (!sprinklerSchedule.Zones.Contains(zone))
             {
+                sprinklerSchedule.Zones.Add(zone);
+            }
+            zone = new Zone{
                 Name = "Back Lawn",
                 Number = 1,
                 WateringTime = 15
-            });
-            sprinklerSchedule.Zones.Add(new Zone
+            };
+            if (!sprinklerSchedule.Zones.Contains(zone))
             {
+                sprinklerSchedule.Zones.Add(zone);
+            }
+            zone = new Zone{
                 Name = "Side Lawn",
                 Number = 2,
                 WateringTime = 20
-            });
-            sprinklerSchedule.Zones.Add(new Zone
+            };
+            if (!sprinklerSchedule.Zones.Contains(zone))
             {
+                sprinklerSchedule.Zones.Add(zone);
+            }
+            zone = new Zone{
                 Name = "Front Flower Bed",
                 Number = 4,
                 WateringTime = 30
-            });
+            };
+            if (!sprinklerSchedule.Zones.Contains(zone))
+            {
+                sprinklerSchedule.Zones.Add(zone);
+            }
 
             //StartSchedule();
         }
