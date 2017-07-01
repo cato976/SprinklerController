@@ -8,6 +8,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Threading;
 
     public class GoogleAPI
@@ -15,7 +16,7 @@
         static string[] Scopes = { CalendarService.Scope.Calendar };
         static string ApplicationName = "Solkinetics Irrigation";
 
-        public bool InsertEvent(DateTime StartDateTime)
+        public Event InsertEvent(DateTime StartDateTime)
         {
             CalendarService service = GetCredentials();
 
@@ -32,15 +33,26 @@
             Event createdEvent = request.Execute();
             if (!string.IsNullOrEmpty(createdEvent.HtmlLink))
             {
-                return true;
+                return createdEvent;
             }
             else
             {
-                return false;
+                return createdEvent;
             }
         }
 
-        public Events FindIrrigationEvents()
+        public bool DeleteEvent(DateTime StartDateTime)
+        {
+            CalendarService service = GetCredentials();
+            var evnts = FindIrrigationEvents(StartDateTime);
+
+            EventsResource.DeleteRequest request = service.Events.Delete("primary", evnts.Items.FirstOrDefault().Id);
+            request.Execute();
+
+            return true;
+        }
+
+        public Events FindIrrigationEvents(DateTime StartDateTime = new DateTime())
         {
             CalendarService service = GetCredentials();
             Events irrigationEvents = new Events();
@@ -61,14 +73,13 @@
                 foreach (var eventItem in events.Items)
                 {
                     string when = eventItem.Start.DateTime.ToString();
-                    if (!String.IsNullOrEmpty(when) && eventItem.Summary.Contains("Start Irrigation"))
+                    if ((StartDateTime == DateTime.MinValue) && !String.IsNullOrEmpty(when) && eventItem.Summary.Contains("Start Irrigation"))
                     {
-                        when = eventItem.Start.Date;
-                        if (irrigationEvents.Items == null)
-                        {
-                            irrigationEvents.Items = new List<Event>();
-                        }
-                        irrigationEvents.Items.Add(eventItem);
+                        when = AddEvent(irrigationEvents, eventItem);
+                    }
+                    else if((StartDateTime.Date == eventItem.Start.DateTime.Value.Date) && (StartDateTime.Hour == eventItem.Start.DateTime.Value.Hour) && (StartDateTime.Minute == eventItem.Start.DateTime.Value.Minute) && !String.IsNullOrEmpty(when) && eventItem.Summary.Contains("Start Irrigation"))
+                    {
+                        when = AddEvent(irrigationEvents, eventItem);
                     }
                     //Console.WriteLine("{0} ({1})", eventItem.Summary, when);
                 }
@@ -80,6 +91,17 @@
                 //Console.WriteLine("No upcoming events found.");
                 return irrigationEvents;
             }
+        }
+
+        private static string AddEvent(Events irrigationEvents, Event eventItem)
+        {
+            string when = eventItem.Start.Date;
+            if (irrigationEvents.Items == null)
+            {
+                irrigationEvents.Items = new List<Event>();
+            }
+            irrigationEvents.Items.Add(eventItem);
+            return when;
         }
 
         private static CalendarService GetCredentials()

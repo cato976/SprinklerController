@@ -19,12 +19,25 @@
         }
 
         [TestMethod]
+        public void TestAddSchedule()
+        {
+            DateTime startTime = DateTime.Now.AddMinutes(5);
+            var controller = new SprinklerController();
+            var status = controller.AddToSchedule(startTime);
+            Assert.AreEqual(true, status);
+            Assert.AreEqual(true, controller.DeleteSchedule(startTime));
+        }
+
+        [TestMethod]
         public void TestStartIrrigationSystem()
         {
             TaskScheduler scheduler = new SynchronousTaskScheduler();
+            var controller = new SprinklerController();
+            DateTime startTime = DateTime.Now.AddMinutes(1);
+            controller.AddToSchedule(startTime);
+
             Task.Factory.StartNew(() =>
             {
-                var controller = new SprinklerController();
                 controller.StartIrrigationSystem();
                 var status = controller.GetCurrentStatus();
                 int zoneMinutes = 0;
@@ -38,12 +51,13 @@
                 if (sleepTill > DateTime.Now)
                 {
                     Thread.Sleep(new TimeSpan(sleepTill.Ticks - DateTime.Now.Ticks));  // Sleep till it time to start
-                    Thread.Sleep(new TimeSpan((sleepTill.AddSeconds(zoneMinutes).Ticks) - (sleepTill.Ticks ))); // Sleep for the watering time
+                    Thread.Sleep(new TimeSpan((sleepTill.AddSeconds(zoneMinutes).Ticks) - (sleepTill.Ticks))); // Sleep for the watering time
                 }
             },
             CancellationToken.None,
             TaskCreationOptions.None,
             scheduler);
+            controller.DeleteSchedule(startTime);
         }
     }
 }

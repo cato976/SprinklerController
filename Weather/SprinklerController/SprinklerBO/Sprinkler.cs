@@ -17,7 +17,7 @@
 
         public Sprinkler()
         {
-            //SetupSchedule();
+            SetupSchedule();
         }
 
         private static void SetupSchedule()
@@ -113,6 +113,7 @@
 
             Debug.WriteLine("Done Watering Zones");
         }
+
         public static Schedule GetSchedule()
         {
             GoogleAPI google = new GoogleAPI();
@@ -122,6 +123,27 @@
 
             SetupSchedule();
             return sprinklerSchedule;
+        }
+
+        public static bool AddToSchedule(DateTime startDateTime)
+        {
+            GoogleAPI google = new GoogleAPI();
+
+            var ent = google.InsertEvent(startDateTime);
+            if (!string.IsNullOrEmpty(ent.HtmlLink))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool DeleteFromSchedule(DateTime startDateTime)
+        {
+            GoogleAPI google = new GoogleAPI();
+            return google.DeleteEvent(startDateTime);
         }
 
         public static void StartIrrigationSystem()
