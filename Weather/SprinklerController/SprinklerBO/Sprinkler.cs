@@ -93,6 +93,7 @@
             sprinklerSchedule.Zones.ForEach(zone =>
             {
                 Debug.WriteLine(string.Format("Watering Zone:{0} for {1} minutes", zone.Name, zone.WateringTime));
+                Console.WriteLine(string.Format("Watering Zone:{0} for {1} minutes", zone.Name, zone.WateringTime));
                 Debug.WriteLine(string.Format("Energizing solenoid {0}", zone.Number));
                 zone.Status = StatusType.On;
 
@@ -102,11 +103,13 @@
                 {
                     int SleepMilliseconds = (int)Math.Round((TargetTime - Now).TotalMilliseconds / 2);
                     Debug.WriteLine(DateTime.Now.ToString() + ": " + SleepMilliseconds * 2 + " Milliseconds till watering is done");
+                    Console.WriteLine(DateTime.Now.ToString() + ": " + SleepMilliseconds * 2 + " Milliseconds till watering is done");
                     Thread.Sleep(SleepMilliseconds > 250 ? SleepMilliseconds : 250);
                     Now = DateTime.Now;
                 }
 
                 Debug.WriteLine(string.Format("Done watering Zone:{0}", zone.Name));
+                Console.WriteLine(string.Format("Done watering Zone:{0}", zone.Name));
                 Debug.WriteLine(string.Format("De-Energizing solenoid {0}", zone.Number));
                 zone.Status = StatusType.Off;
             });
@@ -118,9 +121,11 @@
         {
             GoogleAPI google = new GoogleAPI();
             var events = google.FindIrrigationEvents();
-            var evnt = events.Items.FirstOrDefault();
-            sprinklerSchedule.StartDateTime = (DateTime)evnt.Start.DateTime;
-
+            if (events.Items != null)
+            {
+                var evnt = events.Items.FirstOrDefault();
+                sprinklerSchedule.StartDateTime = (DateTime)evnt.Start.DateTime;
+            }
             SetupSchedule();
             return sprinklerSchedule;
         }
@@ -149,7 +154,10 @@
         public static void StartIrrigationSystem()
         {
             GetSchedule();
-            StartSchedule();
+            if (sprinklerSchedule.StartDateTime > DateTime.Now)
+            {
+                StartSchedule();
+            }
         }
     }
 }

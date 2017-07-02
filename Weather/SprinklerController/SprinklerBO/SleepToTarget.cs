@@ -29,6 +29,7 @@
             {
                 int SleepMilliseconds = (int)Math.Round((TargetTime - Now).TotalMilliseconds / 2);
                 Debug.WriteLine(DateTime.Now.ToString() + ": " + SleepMilliseconds * 2 + " Milliseconds till alarm");
+                Console.WriteLine(DateTime.Now.ToString() + ": " + SleepMilliseconds * 2 + " Milliseconds till alarm");
                 Thread.Sleep(SleepMilliseconds > MinSleepMilliseconds ? SleepMilliseconds : MinSleepMilliseconds);
                 Now = DateTime.Now;
             }

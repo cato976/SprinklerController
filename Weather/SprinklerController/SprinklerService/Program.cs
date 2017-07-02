@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Hosting.WindowsServices;
     using Microsoft.Net.Http.Server;
     using SprinklerBO;
+    using System;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
@@ -18,13 +19,16 @@
             if(Debugger.IsAttached || args.Contains("--console"))
             {
                 isService = false;
+                Console.WriteLine("Not running as a service");
             }
+
             var pathToExe = Process.GetCurrentProcess().MainModule.FileName;
             var pathToContentRoot = Path.GetDirectoryName(pathToExe);
             if(isService)
             {
                 pathToExe = Process.GetCurrentProcess().MainModule.FileName;
                 pathToContentRoot = Path.GetDirectoryName(pathToExe);
+                Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             }
 
             var host = new WebHostBuilder()
@@ -33,7 +37,7 @@
                     options.ListenerSettings.Authentication.Schemes = AuthenticationSchemes.None;
                     options.ListenerSettings.Authentication.AllowAnonymous = true;
                 })
-                .UseContentRoot(pathToContentRoot)
+                //.UseContentRoot(pathToContentRoot)
                 //.UseIISIntrgration()
                 .UseStartup<Startup>()
                 .UseApplicationInsights()

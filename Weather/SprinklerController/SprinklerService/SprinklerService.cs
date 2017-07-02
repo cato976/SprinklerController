@@ -14,6 +14,7 @@
     public partial class SprinklerService : WebHostService
     {
         private EventLog eventLog;
+        //private SprinklerBO.Sprinkler sprinkler = null;
 
         //public SprinklerService(string[] args)
         //{
@@ -29,6 +30,13 @@
         public SprinklerService(IWebHost host) : base(host)
         {
             //InitializeComponent();
+            eventLog = new EventLog();
+            if(!EventLog.SourceExists("SprinklerSource"))
+            {
+                EventLog.CreateEventSource("SprinklerSource", "SprinklerLog");
+            }
+            eventLog.Source = "SprinklerSourve";
+            eventLog.Log = "SprinklerLog";
             //string eventSourceName = "SprinklerSource";
             //string logName = "SprinklerLog";
             //if (args.Count() > 0) { eventSourceName = args[0]; }
@@ -42,6 +50,15 @@
             //eventLog.Source = eventSourceName; eventLog.Log = logName;
         }
 
+        protected override void OnStarted()
+        {
+            base.OnStarted();
+            //sprinkler = new SprinklerBO.Sprinkler();
+            SprinklerBO.Sprinkler.StartIrrigationSystem();
+
+            eventLog.WriteEntry("Sprinkler Service Started");
+        }
+
         protected override void OnStarting(string[] args)
         {
             eventLog.WriteEntry("Sprinkler Service Starting");
@@ -52,6 +69,12 @@
         {
             eventLog.WriteEntry("Sprinkler Service Stopping");
             base.OnStopping();
+        }
+
+        protected override void OnStopped()
+        {
+            base.OnStopped();
+            eventLog.WriteEntry("Sprinkler Service Stopped");
         }
     }
 }
