@@ -3,21 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SprinklerService", "SprinklerService\SprinklerService.csproj", "{EA422CB7-4EAC-43F3-9DDD-D6D21F419832}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SprinklerService", "SprinklerService\SprinklerService.csproj", "{EA422CB7-4EAC-43F3-9DDD-D6D21F419832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SprinklerBO", "SprinklerBO\SprinklerBO.csproj", "{7BE6FE19-20A4-4FCF-B067-C0DF4064F539}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SprinklerBO", "SprinklerBO\SprinklerBO.csproj", "{7BE6FE19-20A4-4FCF-B067-C0DF4064F539}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAPI", "WeatherAPI\WeatherAPI.csproj", "{6251ED4F-774B-4F94-93E1-B5835FCD6DF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherAPI", "WeatherAPI\WeatherAPI.csproj", "{6251ED4F-774B-4F94-93E1-B5835FCD6DF0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SprinklerTest", "SprinklerTest\SprinklerTest.csproj", "{054F0F86-7C0D-4E64-827F-FE670C9E614C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAPITest", "WeatherAPITest\WeatherAPITest.csproj", "{476DDC6F-60ED-4DCD-9A7A-2CF628C78BC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarAPI", "CalendarAPI\CalendarAPI.csproj", "{AE49F367-D3A1-4597-826E-B4E2DEEF48B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalendarAPI", "CalendarAPI\CalendarAPI.csproj", "{AE49F367-D3A1-4597-826E-B4E2DEEF48B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarAPITest", "CalendarAPITest\CalendarAPITest.csproj", "{BC8DA693-B109-4830-8E48-99A1AFFD9342}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHelper", "TestHelper\TestHelper.csproj", "{1D82BA74-F04C-4B11-B50C-4114AFAE8575}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHelper", "TestHelper\TestHelper.csproj", "{1D82BA74-F04C-4B11-B50C-4114AFAE8575}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolKineticsIrrigation.Web", "SolKineticsIrrigation.Web\SolKineticsIrrigation.Web.csproj", "{09D9B1E8-12EC-4112-87D3-C73FDC65F4C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{1D82BA74-F04C-4B11-B50C-4114AFAE8575}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D82BA74-F04C-4B11-B50C-4114AFAE8575}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D82BA74-F04C-4B11-B50C-4114AFAE8575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09D9B1E8-12EC-4112-87D3-C73FDC65F4C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D9B1E8-12EC-4112-87D3-C73FDC65F4C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D9B1E8-12EC-4112-87D3-C73FDC65F4C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09D9B1E8-12EC-4112-87D3-C73FDC65F4C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
